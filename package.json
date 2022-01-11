@@ -1,0 +1,31 @@
+{
+  "name": "composition-api-ts-pratice",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build:prod": "vue-cli-service build --mode production",
+    "build:staging": "vue-cli-service build --mode staging"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.1.1",
+    "core-js": "^3.16.1",
+    "vue": "^2.6.11",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
