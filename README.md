@@ -1,5 +1,3 @@
-# composition-api-ts-pratice
-
 ## Project setup
 ```
 yarn install

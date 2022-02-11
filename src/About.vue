@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    Main page in production {{ stag }}
+     test about page in {{ stag }}
+     hello world
+     
   </div>
 </template>
 
@@ -9,11 +11,8 @@ import { defineComponent, ref } from '@vue/composition-api'
 const stag = process.env.VUE_APP_STAG
 export default defineComponent({
   setup() {
-    const a = 1
-    
-    
     return {
-      stag: ref(stag),
+      stag: ref(stag)
     }
   },
 })
