@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    Main page in production {{ stag }}
+    Hello, Main page in production {{ stag }}
   </div>
 </template>
 
