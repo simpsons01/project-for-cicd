@@ -16,7 +16,7 @@ env:
   GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
   GITHUB_EVENT_NAME: ${{github.event.pull_request.number}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_SHA: ${{ github.sha }}
+  GITHUB_SHA: ${{ env.GITHUB_SHA }}
   
 jobs: 
    notify-local-machine-jenkins-run:
