@@ -2,7 +2,7 @@
   <div id="app">
      test about page in {{ stag }}
      hello world
-     
+     hello world-2
   </div>
 </template>
 
