@@ -19,7 +19,7 @@ env:
   
 jobs: 
    hello-world: 
-     runs-on: [self-hosted, macOS, X64 ,hello-world-runner]
+    #  runs-on: [self-hosted, macOS, X64 ,hello-world-runner]
      steps:
       - run: >-
           echo "Hello World"
