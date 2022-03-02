@@ -1,8 +1,6 @@
 <template>
   <div id="app">
      test about page in {{ stag }}
-     hello world
-     
   </div>
 </template>
 
