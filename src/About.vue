@@ -10,7 +10,8 @@ const stag = process.env.VUE_APP_STAG
 export default defineComponent({
   setup() {
     return {
-      stag: ref(stag)
+      stag: ref(stag),
+      text: ref('1')
     }
   },
 })
