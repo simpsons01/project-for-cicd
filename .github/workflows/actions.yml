@@ -13,9 +13,9 @@ on:
      - "production"
 
 env:
-  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
-  GITHUB_EVENT_NAME: ${{ event_name }}
-  GITHUB_BASE_BRANCH: ${{ base_ref }}
+  GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
+  GITHUB_EVENT_NAME: ${{ github.event_name }}
+  GITHUB_BASE_BRANCH: ${{ github.base_ref }}
   
 jobs: 
    notify-local-machine-jenkins-run:
