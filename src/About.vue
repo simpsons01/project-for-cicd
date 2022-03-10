@@ -6,6 +6,7 @@
      bar
      foo
      alice
+     george
   </div>
 </template>
 
