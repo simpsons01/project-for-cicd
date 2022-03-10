@@ -5,6 +5,7 @@
      bar
      bar
      foo
+     alice
   </div>
 </template>
 
