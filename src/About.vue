@@ -7,7 +7,6 @@
      foo
      alice
      george
-     frank
   </div>
 </template>
 
