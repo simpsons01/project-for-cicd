@@ -9,6 +9,7 @@
      george
      frank
      lisa
+     rose
   </div>
 </template>
 
