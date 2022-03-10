@@ -2,6 +2,7 @@
   <div id="app">
     Main page in production {{ stag }}
     hello_world
+    foo
   </div>
 </template>
 
