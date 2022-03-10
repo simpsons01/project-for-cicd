@@ -3,6 +3,7 @@
      test about page in {{ stag }}
      123
      bar
+     bar
   </div>
 </template>
 
