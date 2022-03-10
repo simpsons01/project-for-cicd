@@ -4,6 +4,7 @@
      123
      bar
      bar
+     foo
   </div>
 </template>
 
