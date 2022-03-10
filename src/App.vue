@@ -3,6 +3,7 @@
     Main page in production {{ stag }}
     hello_world
     foo
+    foo
   </div>
 </template>
 
