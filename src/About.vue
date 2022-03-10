@@ -2,6 +2,7 @@
   <div id="app">
      test about page in {{ stag }}
      123
+     bar
   </div>
 </template>
 
