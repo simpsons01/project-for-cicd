@@ -8,7 +8,6 @@
      alice
      george
      frank
-     lisa
   </div>
 </template>
 
