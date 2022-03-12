@@ -4,6 +4,7 @@
      hello world
      frank
      rose
+     foo
   </div>
 </template>
 
