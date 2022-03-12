@@ -14,7 +14,7 @@ on:
 
 env:
   GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
-  GITHUB_EVENT_NAME: ${{github.event.pull_request.number}}
+  GITHUB_EVENT_NAME: ${{github.event_name }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_SHA: ${{ github.sha }}
   GITHUB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -24,5 +24,9 @@ jobs:
      runs-on: [self-hosted, macOS, X64]
      steps:
       - run: |
-          echo "${GITHUB_SHA}"
-          echo "${GITHUB_HEAD_SHA}"
+         if [[ $GITHUB_EVENT_NAME = "push" ]]; then
+            COMMIT_SHA = ${GITHUB_SHA}
+         elif
+            COMMIT_SHA = ${GITHUB_HEAD_SHA} 
+         fi
+         echo $COMMIT_SHA
