@@ -17,11 +17,12 @@ env:
   GITHUB_EVENT_NAME: ${{github.event.pull_request.number}}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GITHUB_SHA: ${{ github.sha }}
+  GITHUB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
   
 jobs: 
    notify-local-machine-jenkins-run:
      runs-on: [self-hosted, macOS, X64]
      steps:
       - run: |
-          echo ${{ fromJSON(github.sha) }}
-          echo ${{ fromJSON(github.event.pull_request.head.sha) }}
+          echo ${env.GITHUB_SHA}
+          echo ${env.GITHUB_HEAD_SHA}
