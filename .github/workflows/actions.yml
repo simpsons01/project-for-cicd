@@ -20,7 +20,7 @@ env:
   GITHUB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
   
 jobs: 
-   notify-local-machine-jenkins-run:
+   set-env:
      runs-on: [self-hosted, macOS, X64]
      steps:
       - run: |
@@ -29,5 +29,8 @@ jobs:
          else            
             echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
          fi
-         echo "hello world"
+   echo:
+     runs-on: [self-hosted, macOS, X64]
+     steps:
+      - run: |
          echo ${{ env.COMMIT_SHA }}
