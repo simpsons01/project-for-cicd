@@ -22,4 +22,6 @@ jobs:
    notify-local-machine-jenkins-run:
      runs-on: [self-hosted, macOS, X64]
      steps:
-      - run: echo '${{ toJSON(github) }}'
+      - run: >-
+          echo ${github.sha}
+          echo ${github.head.sha}
