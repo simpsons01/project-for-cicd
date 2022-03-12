@@ -26,7 +26,7 @@ jobs:
       - run: |
          if [[ $GITHUB_EVENT_NAME = "push" ]]; then
             COMMIT_SHA = ${GITHUB_SHA}
-         elif; then
+         else
             COMMIT_SHA = ${GITHUB_HEAD_SHA} 
          fi
          echo $COMMIT_SHA
