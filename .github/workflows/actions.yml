@@ -23,5 +23,5 @@ jobs:
      runs-on: [self-hosted, macOS, X64]
      steps:
       - run: >-
-          echo ${github.sha}
-          echo ${github.head.sha}
+          echo ${{ fromJSON(github.sha) }}
+          echo ${{ fromJSON(github.event.pull_request.head.sha) }}
