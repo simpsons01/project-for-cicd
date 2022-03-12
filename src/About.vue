@@ -3,6 +3,7 @@
      test about page in {{ stag }}
      hello world
      frank
+     rose
   </div>
 </template>
 
