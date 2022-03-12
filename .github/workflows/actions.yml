@@ -25,12 +25,8 @@ jobs:
      steps:
       - run: |
          if [[ $GITHUB_EVENT_NAME = "push" ]]; then
-            echo "COMMIT_SHA=$(echo $GITHUB_SHA)" >> $GITHUB_ENV
-         else            
-            echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
+            $COMMIT_SHA=$(echo $GITHUB_SHA)
+         else
+            $COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)
          fi
-   echo:
-     runs-on: [self-hosted, macOS, X64]
-     steps:
-      - run: |
-         echo ${{ env.COMMIT_SHA }}
+         echo $COMMIT_SHA
