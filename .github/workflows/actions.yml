@@ -29,4 +29,5 @@ jobs:
          else            
             echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
          fi
+         echo "hello world"
          echo ${COMMIT_SHA}
