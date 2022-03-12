@@ -29,3 +29,4 @@ jobs:
               -H "Authorization: token ${GITHUB_TOKEN}" \
               https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${GITHUB_SHA} \
               -d '{"state":"pending", "context": "jenkins"}'
+            echo "$GITHUB_CONTEXT"
