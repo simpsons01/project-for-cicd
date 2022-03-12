@@ -22,6 +22,6 @@ jobs:
    notify-local-machine-jenkins-run:
      runs-on: [self-hosted, macOS, X64]
      steps:
-      - run: >-
+      - run: |
           echo ${{ fromJSON(github.sha) }}
           echo ${{ fromJSON(github.event.pull_request.head.sha) }}
