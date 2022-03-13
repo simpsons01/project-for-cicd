@@ -16,18 +16,20 @@ env:
   GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
   GITHUB_EVENT_NAME: ${{github.event_name }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_SHA: ${{ github.sha }}
-  GITHUB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+  GITHUB_HEAD_SHA: ${{ github.sha }}
+  GITHUB_BASE_SHA: ${{ github.event.pull_request.head.sha }}
   
 jobs: 
-   set-env:
+   update-status:
      runs-on: [self-hosted, macOS, X64]
      steps:
-      - run: |
+      - name: "set commit sha"
+        run: |
          if [[ $GITHUB_EVENT_NAME = "push" ]]; then
-            echo "github event is push"
-            $COMMIT_SHA=$(echo $GITHUB_SHA)
+           echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
          else
-            echo "github event is push"
-            $COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)
+           echo "COMMIT_SHA=$(echo $GITHUB_BASE_SHA)" >> $GITHUB_ENV
          fi
+      - name: "read commit sha"
+        run: |
+          echo $COMMIT_SHA
