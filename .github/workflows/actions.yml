@@ -13,19 +13,36 @@ on:
      - "production"
 
 env:
-  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
-  GITHUB_EVENT_NAME: ${{github.event.pull_request.number}}
+  GITHUB_EVENT_NAME: ${{github.event_name }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_SHA: ${{ github.sha }}
+  GITHUB_HEAD_SHA: ${{ github.sha }}
+  GITHUB_BASE_SHA: ${{ github.event.pull_request.head.sha }}
+  GITHUB_REF: ${{ github.ref }}
+  GITHUB_HEAD_REF: ${{ github.head_ref  }}
   
 jobs: 
-   notify-local-machine-jenkins-run:
+   notify-jenkins:
      runs-on: [self-hosted, macOS, X64]
      steps:
-      - run: >-
-            curl \
-              -X POST \
-              -H "Accept: application/vnd.github.v3+json" \
-              -H "Authorization: token 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" \
-              https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${GITHUB_SHA} \
-              -d '{"state":"pending", "context": "jenkins"}'
+      - name: "export COMMIT_SHA and BRANCH_NAME to env"
+        run: |
+         if [[ $GITHUB_EVENT_NAME = "push" ]]; then
+           echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
+         else
+           echo "COMMIT_SHA=$(echo $GITHUB_BASE_SHA)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_HEAD_REF)" >> $GITHUB_ENV
+         fi
+      - name: "notify jenkins"
+        run: >-
+           curl \
+            -X GET \
+            "http://localhost:4444/job/test-custom-jenkins/buildWithParameters?token=TOKEN&BUILD_BRANCH=$BRANCH_NAME&BUILD_EVENT=$GITHUB_EVENT_NAME&COMMIT_SHA=$COMMIT_SHA"
+      - name: "update commit staus"
+        run: >-
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/simpsons01/project-for-cicd/statuses/$COMMIT_SHA \
+            -d '{ "state":"pending",  "context": "jenkins" }'
