@@ -25,8 +25,9 @@ jobs:
      steps:
       - run: |
          if [[ $GITHUB_EVENT_NAME = "push" ]]; then
+            echo "github event is push"
             $COMMIT_SHA=$(echo $GITHUB_SHA)
          else
+            echo "github event is push"
             $COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)
          fi
-         echo $COMMIT_SHA
