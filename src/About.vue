@@ -5,6 +5,7 @@
      frank
      rose
      foo
+     tank
   </div>
 </template>
 
