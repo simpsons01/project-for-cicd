@@ -10,6 +10,7 @@
     ocean
     june
     edision
+    sasa
   </div>
 </template>
 
