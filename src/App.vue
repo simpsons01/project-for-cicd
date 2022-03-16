@@ -12,6 +12,7 @@
     edision
     sasa
     jaylio
+    kiki
   </div>
 </template>
 
