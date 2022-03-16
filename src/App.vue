@@ -15,6 +15,7 @@
     kiki
     tiffany
     nick
+    ray
   </div>
 </template>
 
