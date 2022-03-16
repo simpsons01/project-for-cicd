@@ -9,6 +9,7 @@
     william
     ocean
     june
+    edision
   </div>
 </template>
 
