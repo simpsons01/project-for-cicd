@@ -7,6 +7,7 @@
     tank
     apple
     william
+    ocean
   </div>
 </template>
 
