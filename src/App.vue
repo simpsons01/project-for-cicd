@@ -8,6 +8,7 @@
     apple
     william
     ocean
+    june
   </div>
 </template>
 
