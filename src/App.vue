@@ -5,6 +5,7 @@
     frank
     hank
     tank
+    apple
   </div>
 </template>
 
