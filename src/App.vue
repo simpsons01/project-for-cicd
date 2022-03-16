@@ -3,6 +3,7 @@
     Main page in production {{ stag }}
     rose
     frank
+    hank
   </div>
 </template>
 
