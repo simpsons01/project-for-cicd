@@ -16,6 +16,7 @@
     tiffany
     nick
     ray
+    james
   </div>
 </template>
 
