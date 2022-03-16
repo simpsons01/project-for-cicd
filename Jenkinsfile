@@ -6,6 +6,10 @@ def getCommitSha() {
 
 pipeline {
     agent any
+
+    tools {
+        nodejs "14.15.1"
+    }
     
     environment {
         COMMIT_SHA = getCommitSha()
