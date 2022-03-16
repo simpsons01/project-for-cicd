@@ -14,6 +14,7 @@
     jaylio
     kiki
     tiffany
+    nick
   </div>
 </template>
 
