@@ -5,9 +5,7 @@ def getCommitSha() {
 
 
 pipeline {
-    agent {
-        label "ubuntu-trusty-64"
-    }
+    agent any
     
     environment {
         COMMIT_SHA = getCommitSha()
