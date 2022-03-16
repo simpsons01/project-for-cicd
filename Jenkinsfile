@@ -15,14 +15,15 @@ pipeline {
         stage('init') {
             steps {
                 withCredentials([string(credentialsId: 'github_token', variable: 'GITHUB_TOKEN')]) {
-                sh ("""
-                    curl \
-                    -X POST \
-                    -H \"Accept: application/vnd.github.v3+json\" \
-                    -H \"Authorization: token ${GITHUB_TOKEN}\" \
-                    https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
-                    -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\" }\" 
-                """)
+                    sh ("""
+                        curl \
+                        -X POST \
+                        -H \"Accept: application/vnd.github.v3+json\" \
+                        -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                        https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+                        -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\" }\" 
+                    """)
+                }
             }
         }
         
@@ -33,22 +34,12 @@ pipeline {
         }
         
         stage('test') {
-            when {
-                expression { 
-                    BUILD_EVENT != 'push'
-                }
-            }
             steps {
                 sh 'npm run test:unit'
             }
         }
         
         stage('deploy') {
-            when {
-                expression { 
-                    BUILD_EVENT == 'push'
-                }
-            }
             parallel {
                 stage('deploy main') {
                     steps {
