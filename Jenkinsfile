@@ -25,7 +25,7 @@ pipeline {
                         -H \"Accept: application/vnd.github.v3+json\" \
                         -H \"Authorization: token ${GITHUB_TOKEN}\" \
                         https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
-                        -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\" }\" 
+                        -d \"{ \\"state\\":\\"pending\\",  \\"context\\": \\"jenkins\\" }\" 
                     """)
                 }
             }
