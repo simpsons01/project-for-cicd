@@ -6,6 +6,7 @@
     hank
     tank
     apple
+    bannana
   </div>
 </template>
 
