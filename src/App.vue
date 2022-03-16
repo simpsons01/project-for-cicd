@@ -11,6 +11,7 @@
     june
     edision
     sasa
+    jaylio
   </div>
 </template>
 
