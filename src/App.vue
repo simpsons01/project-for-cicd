@@ -4,6 +4,7 @@
     rose
     frank
     hank
+    tank
   </div>
 </template>
 
