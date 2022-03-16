@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('init') {
             steps {
-                echo "hello world"
+                sh 'printenv'
             }
         }
     }
