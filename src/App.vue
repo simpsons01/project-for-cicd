@@ -1,26 +1,5 @@
 <template>
   <div id="app">
-    Main page in production {{ stag }}
-    rose
-    frank
-    hank
-    tank
-    apple
-    william
-    ocean
-    june
-    edision
-    sasa
-    jaylio
-    kiki
-    tiffany
-    nick
-    ray
-    james
-    nick
-    niel
-    jessica
-    small nick
   </div>
 </template>
 
