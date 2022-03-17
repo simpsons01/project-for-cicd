@@ -20,6 +20,7 @@
     nick
     niel
     jessica
+    small nick
   </div>
 </template>
 
