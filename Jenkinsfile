@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('init') {
             steps {
-               sh 'sleep 300'
-               echo "hello world"
+               sh 'sleep 30'
+               sh 'printenv'
             }
         }
     }
