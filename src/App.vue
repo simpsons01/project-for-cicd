@@ -17,6 +17,7 @@
     nick
     ray
     james
+    nick
   </div>
 </template>
 
