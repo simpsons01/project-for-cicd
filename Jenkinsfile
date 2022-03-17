@@ -17,13 +17,13 @@ pipeline {
         }
 
         stage('test') {
-            stes {
+            steps {
                 sh 'npm run test:unit'
             }
         }
 
         stage('build') {
-            stes {
+            steps {
                 sh "npm run build-${env.BRANCH_NAME}"
             }
         }
