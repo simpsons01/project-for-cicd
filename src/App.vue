@@ -3,6 +3,7 @@
     nick
     ray
     simpsons01
+    simpsons02
   </div>
 </template>
 
