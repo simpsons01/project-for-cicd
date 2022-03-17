@@ -19,6 +19,7 @@
     james
     nick
     niel
+    jessica
   </div>
 </template>
 
