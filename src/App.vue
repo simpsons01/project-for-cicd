@@ -2,6 +2,7 @@
   <div id="app">
     nick
     ray
+    simpsons
   </div>
 </template>
 
