@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     nick
+    ray
   </div>
 </template>
 
