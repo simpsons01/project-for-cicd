@@ -17,6 +17,8 @@
     nick
     ray
     james
+    nick
+    niel
   </div>
 </template>
 
