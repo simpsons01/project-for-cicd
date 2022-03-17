@@ -1,11 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile true
+    }
 
     stages {
         stage('init') {
             steps {
-               sh 'sleep 30'
-               sh 'printenv'
+               sh 'aws --version'
+               sh 'node --version'
             }
         }
     }
