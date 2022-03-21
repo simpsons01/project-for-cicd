@@ -19,6 +19,7 @@ pipeline {
     }
 
     environment {
+        PATH = "/home/jenkins/.nvm/versions/v14.15.1/bin:/home/jenkins/.nvm/versions/v14.15.1/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
         IS_PR = getIsPr(env)
         STAGE = getStage(env)
     }
