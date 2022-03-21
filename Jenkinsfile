@@ -1,5 +1,5 @@
 def getIsPr(env) {
-   return env.CHANGE_ID == null)
+   return env.CHANGE_ID == null
 }
 
 def getStage(env) {
