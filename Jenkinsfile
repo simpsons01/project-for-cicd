@@ -1,3 +1,20 @@
+// def getIsPr(env) {
+//     if(env.BRANCH_ID.equals('')) {
+//         return false
+//     } else {
+//         return true 
+//     }
+// }
+
+// def getStage(env) {
+//     def stage = ''
+//    if(env.GITHUB_BRANCH.equals('^PR')) {
+       
+//    } else {
+//       stage = env.GITHUB_BRANCH.replace("commits/", '')
+//    }
+// }
+
 pipeline {
     agent {
         label 'docker-debian'
@@ -12,6 +29,7 @@ pipeline {
             steps {
                sh 'aws --version'
                sh 'node --version'
+               sh 'printenv'
             }
         }
     }
