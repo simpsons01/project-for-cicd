@@ -39,13 +39,51 @@ pipeline {
     }
 
     stages {
-        stage('init') {
+        stage('echo env') {
             steps {
                echo "${env.IS_PR}"
                echo "${env.STAGE}"
                echo "${env.S3_BUCKET}"
                sh "node -v"
-               sh "aws --version"
+            }
+        }
+
+        stage('install') {
+            steps {
+               sh "npm install"
+            }
+        }
+
+        stage('test') {
+            when {
+                expression {
+                    return env.IS_PR;
+                }
+            }
+            steps {
+                sh "npm run test:unit"
+            }
+        }
+
+        stage('build') {
+            when {
+                expression {
+                    return !env.IS_PR;
+                }
+            }
+            steps {
+                sh "npm run build-${env.STAGE}"
+            }
+        }
+
+        stage('deploy') {
+            when {
+                expression {
+                    return !env.IS_PR;
+                }
+            }
+            steps {
+                sh "deploy to '${env.S3_BUCKET} to ${env.STAGE}'"
             }
         }
     }
