@@ -27,8 +27,6 @@ pipeline {
     stages {
         stage('init') {
             steps {
-               sh 'aws --version'
-               sh 'node --version'
                sh 'printenv'
             }
         }
