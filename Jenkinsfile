@@ -28,6 +28,8 @@ pipeline {
             steps {
                echo "${env.IS_PR}"
                echo "${env.STAGE}"
+               echo "node -v"
+               echo "aws --version"
             }
         }
     }
