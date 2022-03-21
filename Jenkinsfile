@@ -83,7 +83,7 @@ pipeline {
                 }
             }
             steps {
-                sh "deploy to '${env.S3_BUCKET} to ${env.STAGE}'"
+                echo "deploy to '${env.S3_BUCKET} to ${env.STAGE}'"
             }
         }
     }
