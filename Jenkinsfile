@@ -1,10 +1,11 @@
 def getIsPr(env) {
-   return env.CHANGE_ID == null
+   return env.CHANGE_ID != null
 }
 
 def getStage(env) {
+   boolean isPR = getIsPr(env)
    def stage = ''
-   if(env.BRANCH_ID == null) {
+   if(isPR) {
       stage = env.CHANGE_TARGET
    } else {
       stage = env.JOB_BASE_NAME
