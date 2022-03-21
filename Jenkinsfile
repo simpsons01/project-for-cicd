@@ -57,7 +57,7 @@ pipeline {
         stage('test') {
             when {
                 expression {
-                    return env.IS_PR;
+                    return env.IS_PR == true;
                 }
             }
             steps {
@@ -68,7 +68,7 @@ pipeline {
         stage('build') {
             when {
                 expression {
-                    return !env.IS_PR;
+                    return env.IS_PR == false;
                 }
             }
             steps {
@@ -79,7 +79,7 @@ pipeline {
         stage('deploy') {
             when {
                 expression {
-                    return !env.IS_PR;
+                    return env.IS_PR == false;
                 }
             }
             steps {
