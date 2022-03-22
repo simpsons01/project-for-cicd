@@ -5,12 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
-    "build-production:about": "vue-cli-service build --output about --mode production",
-    "build-production:main": "vue-cli-service build --output main --mode production",
-    "build-staging:about": "vue-cli-service build --output about --mode staging",
-    "build-staging:main": "vue-cli-service build --output main --mode staging",
-    "build-lab:about": "vue-cli-service build --output about --mode lab",
-    "build-lab:main": "vue-cli-service build --output main --mode lab"
+    "build-production": "vue-cli-service build --output about --mode production",
+    "build-staging": "vue-cli-service build --output main --mode staging",
+    "build-lab": "vue-cli-service build --output main --mode lab"
   },
   "dependencies": {
     "@vue/composition-api": "^1.1.1",
