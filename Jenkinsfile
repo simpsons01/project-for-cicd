@@ -3,9 +3,8 @@ def getIsPr(env) {
 }
 
 def getStage(env) {
-   boolean isPR = getIsPr(env)
    def stage = ''
-   if(isPR) {
+   if(getIsPr(env)) {
       stage = env.CHANGE_TARGET
    } else {
       stage = env.JOB_BASE_NAME
