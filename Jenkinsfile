@@ -31,7 +31,7 @@ pipeline {
     }
 
     environment {
-        PATH = "/home/jenkins/.nvm/versions/v14.15.1/bin:/home/jenkins/.nvm/versions/v14.15.1/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        PATH = "${HOME}/.nvm/versions/v${NODE_VERSION}/bin:${PATH}"
         IS_PR = getIsPr(env)
         STAGE = getStage(env)
         S3_BUCKET = getS3Bucket(env)
