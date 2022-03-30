@@ -1,16 +1,14 @@
 <template>
-    <div>
-      alice
-      alice2
-    </div>
+   <div>
+     {{ text }}
+   </div>
 </template>
 
 <script>
 export default {
-
+  props: ['text']
 }
 </script>
 
 <style>
-
-</style>
+</style> 
