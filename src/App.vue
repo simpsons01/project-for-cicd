@@ -3,6 +3,7 @@
     simpsons01
     simpsons02
     simpsons03
+    simpsons04
   </div>
 </template>
 
