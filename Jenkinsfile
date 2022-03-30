@@ -27,7 +27,7 @@ def getS3Bucket(env) {
 
 pipeline {
     agent {
-        label 'docker-debian'
+        label 'my-agent'
     }
 
     environment {
