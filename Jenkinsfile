@@ -82,7 +82,7 @@ pipeline {
                 }
             }
             steps {
-                echo "deploy to '${env.S3_BUCKET} to ${env.STAGE}'"
+                sh 'aws s3 cp '
             }
         }
     }
