@@ -16,11 +16,11 @@ def getS3Bucket(env) {
     def s3Bucket = ''
     def stage = getStage(env)
     if(stage == 'lab') {
-      s3Bucket = 'lab/bucket'
+      s3Bucket = 'simpsons-jenkins-lab'
     }else if(stage == 'staging') {
-      s3Bucket = 'staging/bucket'
+      s3Bucket = 'simpsons-jenkins-staging'
     }else if(stage == 'production') {
-       s3Bucket = 'production/bucket'
+       s3Bucket = 'simpsons-jenkins-production'
     }
     return s3Bucket
 }
@@ -82,7 +82,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'aws s3 cp '
+                sh "aws s3 cp ./dist s3://${S3_BUCKET}  --recursive"
             }
         }
     }
