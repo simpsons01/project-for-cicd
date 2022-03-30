@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    simpsons01
   </div>
 </template>
 
