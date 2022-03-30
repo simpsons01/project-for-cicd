@@ -4,7 +4,6 @@
     simpsons02
     simpsons03
     simpsons04
-    simpsons05
   </div>
 </template>
 
