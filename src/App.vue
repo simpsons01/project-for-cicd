@@ -2,6 +2,7 @@
   <div id="app">
     simpsons01
     simpsons02
+    simpsons03
   </div>
 </template>
 
