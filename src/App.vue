@@ -13,6 +13,7 @@
     simpsons12
     simpsons13
     simpsons14
+    simpsons15
   </div>
 </template>
 
