@@ -16,22 +16,22 @@ def getS3Bucket(env) {
     def s3Bucket = ''
     def stage = getStage(env)
     if(stage == 'lab') {
-      s3Bucket = 'lab/bucket'
+      s3Bucket = 'simpsons-jenkins-lab'
     }else if(stage == 'staging') {
-      s3Bucket = 'staging/bucket'
+      s3Bucket = 'simpsons-jenkins-staging'
     }else if(stage == 'production') {
-       s3Bucket = 'production/bucket'
+       s3Bucket = 'simpsons-jenkins-production'
     }
     return s3Bucket
 }
 
 pipeline {
     agent {
-        label 'docker-debian'
+        label 'my-agent'
     }
 
     environment {
-        PATH = "/home/jenkins/.nvm/versions/v14.15.1/bin:/home/jenkins/.nvm/versions/v14.15.1/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        PATH = "${HOME}/.nvm/versions/v${NODE_VERSION}/bin:${PATH}"
         IS_PR = getIsPr(env)
         STAGE = getStage(env)
         S3_BUCKET = getS3Bucket(env)
@@ -82,7 +82,7 @@ pipeline {
                 }
             }
             steps {
-                echo "deploy to '${env.S3_BUCKET} to ${env.STAGE}'"
+                sh "aws s3 cp ./dist s3://${S3_BUCKET}  --recursive"
             }
         }
     }
