@@ -1,14 +1,6 @@
 <template>
   <div id="app">
     simpsons01
-    simpsons02
-    simpsons03
-    simpsons04
-    simpsons05
-    simpsons06
-    simpsons07
-    simpsons08
-    simpsons09
   </div>
 </template>
 
