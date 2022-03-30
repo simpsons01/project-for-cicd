@@ -8,6 +8,7 @@
     simpsons06
     simpsons07
     simpsons08
+    simpsons10
   </div>
 </template>
 
