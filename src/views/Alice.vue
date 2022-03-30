@@ -1,6 +1,6 @@
 <template>
     <div>
-      bar
+      alice
     </div>
 </template>
 
