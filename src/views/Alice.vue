@@ -1,6 +1,7 @@
 <template>
     <div>
       alice
+      alice2
     </div>
 </template>
 
