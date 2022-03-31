@@ -82,7 +82,7 @@ pipeline {
                 }
             }
             steps {
-                sh "aws s3 cp ./dist s3://${S3_BUCKET}  --recursive"
+                 sh "aws s3 cp ./dist s3://${S3_BUCKET}  --recursive"
             }
         }
     }
