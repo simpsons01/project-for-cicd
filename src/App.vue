@@ -1,6 +1,7 @@
 <template>
   <div id="app">
      simpsons01
+     simpsons02
   </div>
 </template>
 
