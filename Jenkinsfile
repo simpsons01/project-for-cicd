@@ -77,7 +77,7 @@ pipeline {
 
         stage('install') {
             steps {
-               // git branch: "${STAGE}", url: 'https://github.com/simpsons01/project-for-cicd.git'
+               git branch: "${STAGE}", url: 'https://github.com/simpsons01/project-for-cicd.git'
                sh "npm install"
             }
         }
