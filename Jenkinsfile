@@ -31,7 +31,6 @@ pipeline {
     }
 
     environment {
-        PATH = "${HOME}/.nvm/versions/v${NODE_VERSION}/bin:${PATH}"
         IS_PR = getIsPr(env)
         STAGE = getStage(env)
         S3_BUCKET = getS3Bucket(env)
