@@ -3,13 +3,8 @@ def getIsPr(env) {
 }
 
 def getStage(env) {
-   def stage = 'lab'
+   def stage = env.BUILD_BRANCH
    return stage
-}
-
-def getS3Bucket(env) {
-    def s3Bucket = 'simpsons-jenkins-lab'
-    return s3Bucket
 }
 
 pipeline {
@@ -20,7 +15,7 @@ pipeline {
     environment {
         IS_PR = getIsPr(env)
         STAGE = getStage(env)
-        S3_BUCKET = getS3Bucket(env)
+        S3_BUCKET = 'simpsons-jenkins-lab'
     }
 
     stages {
@@ -35,12 +30,12 @@ pipeline {
 
         stage('start') {
             steps {
-                withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
                     sh ("""
                         curl \
                         -X POST \
                         -H \"Accept: application/vnd.github.v3+json\" \
-                        -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                        -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
                         https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
                         -d \"{ \\"state\\":\\"pending\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
                     """)
@@ -72,7 +67,7 @@ pipeline {
                 }
             }
             steps {
-                sh "npm run build-${env.STAGE}"
+                sh "npm run build-lab"
             }
         }
 
@@ -90,24 +85,24 @@ pipeline {
 
     post {
         success {
-            withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+            withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
               sh ("""
                 curl \
                   -X POST \
                   -H \"Accept: application/vnd.github.v3+json\" \
-                  -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                  -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
                   https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
                   -d \"{ \\"state\\":\\"success\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
               """)
             }
         }
         failure {
-            withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+            withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
               sh ("""
                 curl \
                   -X POST \
                   -H \"Accept: application/vnd.github.v3+json\" \
-                  -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                  -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
                   https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
                   -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
               """)
