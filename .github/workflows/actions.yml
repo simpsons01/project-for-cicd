@@ -24,10 +24,10 @@ jobs:
         run: |
          if [[ $GITHUB_EVENT_NAME = "push" ]]; then
            echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
-           echo "BRANCH_NAME=$(echo $GITHUB_REF)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_REF | sed  -e 's/refs\/heads\///g')" >> $GITHUB_ENV
          else
            echo "COMMIT_SHA=$(echo $GITHUB_BASE_SHA)" >> $GITHUB_ENV
-           echo "BRANCH_NAME=$(echo $GITHUB_HEAD_REF)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_HEAD_REF | sed  -e 's/refs\/heads\///g')" >> $GITHUB_ENV
          fi
       - name: "notify jenkins"
         run: >-
