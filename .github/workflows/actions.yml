@@ -15,6 +15,8 @@ env:
   GITHUB_BASE_SHA: ${{ github.event.pull_request.head.sha }}
   GITHUB_REF: ${{ github.ref }}
   GITHUB_HEAD_REF: ${{ github.head_ref  }}
+  JENKINS_USER: ${{ secrets.JENKINS_USER }}
+  JENKINS_PASSWORD: ${{ secrets.JENKINS_PASSWORD }}
 
 jobs: 
    notify-jenkins:
@@ -33,5 +35,5 @@ jobs:
         run: >-
            curl \
             -X GET \
-            --user user:123qwe \
+            --user ${JENKINS_USER}:${JENKINS_PASSWORD} \
             http://18.212.133.249:8080/job/remote-build-trigger/buildWithParameters\?token\=TOKEN\&BUILD_BRANCH\=${BRANCH_NAME}\&BUILD_EVENT\=${GITHUB_EVENT_NAME}\&COMMIT_SHA\=${COMMIT_SHA}
