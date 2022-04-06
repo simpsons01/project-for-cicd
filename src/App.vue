@@ -5,6 +5,7 @@
      simpsons03
      simpsons04
      simpsons05
+     simpsons06
   </div>
 </template>
 
