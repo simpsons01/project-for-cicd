@@ -34,4 +34,4 @@ jobs:
            curl \
             -X GET \
             --user user:123qwe \
-            http://18.212.133.249:8080/job/remote-build-trigger/buildWithParameters?token=TOKEN&BUILD_BRANCH=$BRANCH_NAME&BUILD_EVENT=$GITHUB_EVENT_NAME&COMMIT_SHA=$COMMIT_SHA
+            http://18.212.133.249:8080/job/remote-build-trigger/buildWithParameters?token=TOKEN&BUILD_BRANCH=${BRANCH_NAME}&BUILD_EVENT=${GITHUB_EVENT_NAME}&COMMIT_SHA=${COMMIT_SHA}
