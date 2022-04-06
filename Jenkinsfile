@@ -3,25 +3,12 @@ def getIsPr(env) {
 }
 
 def getStage(env) {
-   def stage = env.BUILD_BRANCH
-//    if(getIsPr(env)) {
-//       stage = env.CHANGE_TARGET
-//    } else {
-//       stage = env.JOB_BASE_NAME
-//    }
+   def stage = 'lab'
    return stage
 }
 
 def getS3Bucket(env) {
     def s3Bucket = 'simpsons-jenkins-lab'
-    // def stage = getStage(env)
-    // if(stage == 'lab') {
-    //   s3Bucket = 'simpsons-jenkins-lab'
-    // }else if(stage == 'staging') {
-    //   s3Bucket = 'simpsons-jenkins-staging'
-    // }else if(stage == 'production') {
-    //    s3Bucket = 'simpsons-jenkins-production'
-    // }
     return s3Bucket
 }
 
