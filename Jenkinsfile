@@ -1,27 +1,27 @@
 def getIsPr(env) {
-   return env.CHANGE_ID != null
+   return env.BUILD_EVENT != "push"
 }
 
 def getStage(env) {
-   def stage = ''
-   if(getIsPr(env)) {
-      stage = env.CHANGE_TARGET
-   } else {
-      stage = env.JOB_BASE_NAME
-   }
+   def stage = env.BUILD_BRANCH
+//    if(getIsPr(env)) {
+//       stage = env.CHANGE_TARGET
+//    } else {
+//       stage = env.JOB_BASE_NAME
+//    }
    return stage
 }
 
 def getS3Bucket(env) {
-    def s3Bucket = ''
-    def stage = getStage(env)
-    if(stage == 'lab') {
-      s3Bucket = 'simpsons-jenkins-lab'
-    }else if(stage == 'staging') {
-      s3Bucket = 'simpsons-jenkins-staging'
-    }else if(stage == 'production') {
-       s3Bucket = 'simpsons-jenkins-production'
-    }
+    def s3Bucket = 'simpsons-jenkins-lab'
+    // def stage = getStage(env)
+    // if(stage == 'lab') {
+    //   s3Bucket = 'simpsons-jenkins-lab'
+    // }else if(stage == 'staging') {
+    //   s3Bucket = 'simpsons-jenkins-staging'
+    // }else if(stage == 'production') {
+    //    s3Bucket = 'simpsons-jenkins-production'
+    // }
     return s3Bucket
 }
 
@@ -43,6 +43,21 @@ pipeline {
                echo "${env.STAGE}"
                echo "${env.S3_BUCKET}"
                sh "node -v"
+            }
+        }
+
+        stage('start') {
+            steps {
+                withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+                    sh ("""
+                        curl \
+                        -X POST \
+                        -H \"Accept: application/vnd.github.v3+json\" \
+                        -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                        https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+                        -d \"{ \\"state\\":\\"pending\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+                    """)
+                }
             }
         }
 
@@ -82,6 +97,33 @@ pipeline {
             }
             steps {
                  sh "aws s3 cp ./dist s3://${S3_BUCKET}  --recursive"
+            }
+        }
+    }
+
+    post {
+        success {
+            withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+              sh ("""
+                curl \
+                  -X POST \
+                  -H \"Accept: application/vnd.github.v3+json\" \
+                  -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                  https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+                  -d \"{ \\"state\\":\\"success\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+              """)
+            }
+        }
+        failure {
+            withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+              sh ("""
+                curl \
+                  -X POST \
+                  -H \"Accept: application/vnd.github.v3+json\" \
+                  -H \"Authorization: token ${GITHUB_TOKEN}\" \
+                  https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+                  -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+              """)
             }
         }
     }

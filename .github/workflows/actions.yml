@@ -1,0 +1,36 @@
+name: hello-world-actions
+
+on: 
+ push:
+   branches:
+     - "feature/github_actions_with_remote_trigger_build"
+ pull_request:
+   branches:
+     - "feature/github_actions_with_remote_trigger_build"
+
+env:
+  GITHUB_EVENT_NAME: ${{github.event_name }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_HEAD_SHA: ${{ github.sha }}
+  GITHUB_BASE_SHA: ${{ github.event.pull_request.head.sha }}
+  GITHUB_REF: ${{ github.ref }}
+  GITHUB_HEAD_REF: ${{ github.head_ref  }}
+
+jobs: 
+   notify-jenkins:
+     runs-on: 'ubuntu-18.04'
+     steps:
+      - name: "export COMMIT_SHA and BRANCH_NAME to env"
+        run: |
+         if [[ $GITHUB_EVENT_NAME = "push" ]]; then
+           echo "COMMIT_SHA=$(echo $GITHUB_HEAD_SHA)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
+         else
+           echo "COMMIT_SHA=$(echo $GITHUB_BASE_SHA)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(echo $GITHUB_HEAD_REF)" >> $GITHUB_ENV
+         fi
+      - name: "notify jenkins"
+        run: >-
+           curl \
+            -X GET \
+            http://18.212.133.249:8080/job/project-for-cicd/buildWithParameters?token=TOKEN&BUILD_BRANCH=$BRANCH_NAME&BUILD_EVENT=$GITHUB_EVENT_NAME&COMMIT_SHA=$COMMIT_SHA"
