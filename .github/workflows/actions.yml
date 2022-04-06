@@ -33,4 +33,4 @@ jobs:
         run: >-
            curl \
             -X GET \
-            http://18.212.133.249:8080/job/project-for-cicd/buildWithParameters?token=TOKEN&BUILD_BRANCH=$BRANCH_NAME&BUILD_EVENT=$GITHUB_EVENT_NAME&COMMIT_SHA=$COMMIT_SHA"
+            http://18.212.133.249:8080/job/project-for-cicd/buildWithParameters?token=TOKEN&BUILD_BRANCH=$BRANCH_NAME&BUILD_EVENT=$GITHUB_EVENT_NAME&COMMIT_SHA=$COMMIT_SHA
