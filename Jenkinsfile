@@ -19,6 +19,12 @@ pipeline {
     }
 
     stages {
+        stage('sleep') {
+            steps {
+                sh 'sleep 100'
+            }
+        }
+        
         stage('echo env') {
             steps {
                echo "${env.IS_PR}"
@@ -30,16 +36,16 @@ pipeline {
 
         stage('start') {
             steps {
-                withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
-                    sh ("""
-                        curl \
-                        -X POST \
-                        -H \"Accept: application/vnd.github.v3+json\" \
-                        -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
-                        https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
-                        -d \"{ \\"state\\":\\"pending\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
-                    """)
-                }
+                // withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
+                //     sh ("""
+                //         curl \
+                //         -X POST \
+                //         -H \"Accept: application/vnd.github.v3+json\" \
+                //         -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
+                //         https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+                //         -d \"{ \\"state\\":\\"pending\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+                //     """)
+                // }
             }
         }
 
@@ -85,28 +91,28 @@ pipeline {
 
     post {
         success {
-            withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
-              sh ("""
-                curl \
-                  -X POST \
-                  -H \"Accept: application/vnd.github.v3+json\" \
-                  -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
-                  https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
-                  -d \"{ \\"state\\":\\"success\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
-              """)
-            }
+            // withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
+            //   sh ("""
+            //     curl \
+            //       -X POST \
+            //       -H \"Accept: application/vnd.github.v3+json\" \
+            //       -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
+            //       https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+            //       -d \"{ \\"state\\":\\"success\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+            //   """)
+            // }
         }
         failure {
-            withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
-              sh ("""
-                curl \
-                  -X POST \
-                  -H \"Accept: application/vnd.github.v3+json\" \
-                  -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
-                  https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
-                  -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
-              """)
-            }
+            // withCredentials([string(credentialsId: 'GITHUB_STATUS_TOKEN', variable: 'GITHUB_STATUS_TOKEN')]) {
+            //   sh ("""
+            //     curl \
+            //       -X POST \
+            //       -H \"Accept: application/vnd.github.v3+json\" \
+            //       -H \"Authorization: token ${GITHUB_STATUS_TOKEN}\" \
+            //       https://api.github.com/repos/simpsons01/project-for-cicd/statuses/${COMMIT_SHA} \
+            //       -d \"{ \\"state\\":\\"failure\\",  \\"context\\": \\"jenkins\\", \\"target_url\\": \\"${BUILD_URL}\\" }\" 
+            //   """)
+            // }
         }
     }
 }
