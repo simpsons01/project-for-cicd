@@ -19,11 +19,6 @@ pipeline {
     }
 
     stages {
-        stage('sleep') {
-            steps {
-                sh 'sleep 100'
-            }
-        }
 
         stage('echo env') {
             steps {
